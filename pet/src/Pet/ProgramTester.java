@@ -29,15 +29,19 @@ public class ProgramTester{
             }else if(option==2){
                 addMorePets(scan);
             }else if(option==3){
-                searchByPetName(scan);
+                updateExistingPet(scan);
             }else if(option==4){
-                searchByPetAge(scan);
+                 removeExistingPet(scan);    
             }else if(option==5){
+                searchByPetName(scan);
+            }else if(option==6){
+                searchByPetAge(scan);
+            }else if(option==7){
                 System.out.println("Goodbye!");
             }else{
                 System.out.println("Invalid choice!");
             }
-            } while (option != 5);
+            } while (option != 7);
 
                 scan.close();
         }
@@ -85,6 +89,47 @@ public class ProgramTester{
             } while (!petString.equalsIgnoreCase("done"));
                 System.out.println(count + " pets added.");
         }
+        /**
+        * Updating the existing pet.
+        *
+        * @param scan the scan
+        */
+        private static void updateExistingPet(Scanner scan) {
+
+            viewAllPets();
+            System.out.print("Enter the pet ID you want to update: ");
+            int id = scan.nextInt();
+            scan.nextLine();
+            System.out.print("Enter new name and new age: ");
+            String petString = scan.nextLine();
+            String name = petString.split("\\s+")[0];
+            int age = Integer.parseInt(petString.split("\\s+")[1]);
+            String oldName = pets.get(id).getName();
+            int oldAge = pets.get(id).getAge();
+            pets.get(id).setName(name);
+            pets.get(id).setAge(age);
+
+            System.out.println(oldName + " " + oldAge + " changed to " + name + " " + age);
+        }
+
+        /**
+        * Removes the existing pet.
+        *
+        * @param scan the scan
+        */
+        private static void removeExistingPet(Scanner scan) {
+
+            viewAllPets();
+            System.out.print("Enter the pet ID to remove: ");
+            int id = scan.nextInt();
+            scan.nextLine();
+            String name = pets.get(id).getName();
+            int age = pets.get(id).getAge();
+            pets.remove(id);
+            System.out.println(name + " " + age + " is removed.");
+        }
+
+
        /**
         * Searching  pet by  name.
         * @param scan the scan
@@ -144,9 +189,11 @@ public class ProgramTester{
                 System.out.println("What would like to do?");
                 System.out.println("1) View all pets.");
                 System.out.println("2) Add more pets.");
-                System.out.println("3) Search pets by name.");
-                System.out.println("4) Search pets by age.");
-                System.out.println("5) Exit program");
+                System.out.println("3) Update an existing pet.");
+                System.out.println("4) Remove an existing pet.");
+                System.out.println("5) Search pets by name.");
+                System.out.println("6) Search pets by age.");
+                System.out.println("7) Exit program");
         }
 }
 
