@@ -29,11 +29,14 @@ public class ProgramTester{
             }else if(option==2){
                 addMorePets(scan);
             }else if(option==3){
+                removeExistingPet(scan);
+
+            }else if(option==4){
                 System.out.println("Goodbye!");
             }else{
                 System.out.println("Invalid choice!");
             }
-            } while (option != 3);
+            } while (option != 4);
 
                 scan.close();
         }
@@ -81,15 +84,33 @@ public class ProgramTester{
             } while (!petString.equalsIgnoreCase("done"));
                 System.out.println(count + " pets added.");
         }
+     /**
+        * Removes the existing pet.
+        *
+        * @param scan the scan
+        */
+        private static void removeExistingPet(Scanner scan) {
+
+            viewAllPets();
+            System.out.print("Enter the pet ID to remove: ");
+            int id = scan.nextInt();
+            scan.nextLine();
+            String name = pets.get(id).getName();
+            int age = pets.get(id).getAge();
+            pets.remove(id);
+            System.out.println(name + " " + age + " is removed.");
+        }
         
         public static void menu() {
 
                 System.out.println("What would like to do?");
                 System.out.println("1) View all pets.");
                 System.out.println("2) Add more pets.");
-                System.out.println("3) Exit program");
+                System.out.println("3) Remove an existing pet.");
+                System.out.println("4) Exit program");
         }
 }
+
 
 
 
