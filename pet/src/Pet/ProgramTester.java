@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class ProgramTester{
 
-    
-     static ArrayList<Pets> pets;
+   
+    static ArrayList<Pets> pets;
 
     /**
     * @param args the arguments
@@ -16,7 +16,7 @@ public class ProgramTester{
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
-        pets = new ArrayList<>();
+        //pets[5] = new Array<>(5);
         int option;
         do {
             menu();
@@ -65,26 +65,36 @@ public class ProgramTester{
     private static void addMorePets(Scanner scan) {
         int count = 0;
         String petString = " ";
-        
+       
       
         do {
+            while(count<=4){
+                System.out.print("add pet (name, age): ");
+                petString = scan.nextLine();
+                if (petString.equalsIgnoreCase("done")) {
 
-            System.out.print("add pet (name, age): ");
-            petString = scan.nextLine();
-            if (petString.equalsIgnoreCase("done")) {
+                    break;
+                }
+                    String name = petString.split("\\s+")[0];
+                    int age = Integer.parseInt(petString.split("\\s+")[1]);
 
+                    pets.add(new Pets(name, age));
+                //count++;
+            } 
+            if(count==5)
+                System.out.println("5 pets added");
+            
+            else if(count==5)
+                System.out.println("Error: Database is full");
                 break;
             }
-                String name = petString.split("\\s+")[0];
-                int age = Integer.parseInt(petString.split("\\s+")[1]);
 
-                pets.add(new Pets(name, age));
-                count++;
-
-            } while (!petString.equalsIgnoreCase("done"));
-                System.out.println(count + " pets added.");
+            while (!petString.equalsIgnoreCase("done"));
+              System.out.println(count + " pets added.");
+              //count++;
+            
         }
-     /**
+        /**
         * Removes the existing pet.
         *
         * @param scan the scan
