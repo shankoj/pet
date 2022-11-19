@@ -16,7 +16,7 @@ public class ProgramTester{
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
-        //pets[5] = new Array<>(5);
+       
         int option;
         do {
             menu();
